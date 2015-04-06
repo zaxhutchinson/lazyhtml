@@ -3,7 +3,7 @@ import lazyhtml
 html_page = lazyhtml.LazyHtml()
 html_page.addTitle("Stop Testing Me!")
 html_page.addHeadingOne("TEST PAGE")
-html_page.addParagraph("This is a bunch of fake text that no one should read. It is, in fact, top secret.", color="blue", fontfamily="courier")
+html_page.addParagraph("This is a bunch of fake text that no one should read.", color="blue", fontfamily="courier")
 html_page.addStyle("h1", "color:blue")
 html_page.addStyle("h1", "background-color:yellow")
 html_page.addStyle("table, th, td", "border: 1px solid black")
