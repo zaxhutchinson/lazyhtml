@@ -2,6 +2,8 @@
 
 Version 0.11
 
+Tested with Python 3.4.3
+
 Python module to create simple html pages. For another project I'm working on, I need a very simple, stupidly straight-forward way to generate lots of html pages using python. I will add features as I need them. This is not meant to provide full html support, so if I need something in my project, I'll add it.
 
 <b>Instructions:</b>
