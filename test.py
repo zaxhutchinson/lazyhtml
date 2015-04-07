@@ -9,7 +9,7 @@ html_page.addStyle("h1", "background-color:yellow")
 html_page.addStyle("table, th, td", "border: 1px solid black")
 html_page.addStyle("table, th, td", "padding: 15px")
 
-stupid_list = [ "Cow", "Pig", "Goat", "Ape", "Monkey", "Cat"]
+stupid_list = ["Cow", "Pig", "Goat", "Ape", "Monkey", "Cat", "Dog"]
 
 stupid_table = []
 stupid_table.append(["First Name", "Last Name", "Age"])
@@ -19,8 +19,9 @@ stupid_table.append(["Paul", "Paulson", 30])
 stupid_table.append(["Erik", "Erikson", 40])
 
 html_page.addUnorderedList(stupid_list)
-html_page.addOrderedList(stupid_list)
+html_page.addOrderedList(stupid_list, "a")
 html_page.addTable(stupid_table)
 html_page.createPage()
+html_page.savePage()
 html_page.openPage()
 

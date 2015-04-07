@@ -1,4 +1,7 @@
 # lazyhtml
+
+Version 0.11
+
 Python module to create simple html pages. For another project I'm working on, I need a very simple, stupidly straight-forward way to generate lots of html pages using python. I will add features as I need them. This is not meant to provide full html support, so if I need something in my project, I'll add it.
 
 <b>Instructions:</b>
@@ -83,6 +86,11 @@ And you can open it in your default browser by calling
 
 I will write more complete instructions if they are needed when I feel the module is further along. For now, examine the file test.py for use.
 
-Version 0.1 - Initial Commit
+Version 0.11
+- Adds helpers to clear both the whole page and the body so an object can be reused.
+- Now page creating and saving are split and pages are stored in the object until another call to create or clear.
+- Adds helper to change the filename used to save the page to disk.
+
+Version 0.10 - Initial Commit
 - Needs more testing. Code is first run. Read at your own risk. No comments.
 - Supports paragraphs, headings, page title, tables, ordered and unordered lists, preformatted text, line breaks, horizontal lines, and css styles in some form or fashion.

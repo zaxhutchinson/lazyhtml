@@ -1,3 +1,9 @@
+# Lazy Html
+# code by Zachary Hutchinson
+#
+# Makes it slightly easier to produce html docs from python data. I said slightly.
+
+# Makes use of the webbrowser module to open html docs
 import webbrowser
 
 class LazyHtml:
@@ -10,6 +16,7 @@ class LazyHtml:
         self.meta = {}
         self.body = ""
         self.styles = {}
+        self.page = ""
 
     def addTitle(self, title):
         self.title = title
@@ -18,46 +25,66 @@ class LazyHtml:
         if name not in self.meta.keys():
             self.meta[name] = content
     
-    def removeMetaTad(self, name):
+    def removeMetaTag(self, name):
         if name in self.meta.keys():
             del self.meta[name]
 
     def addStyle(self, element, style):
-        if element not in self.styles:
+        if element not in self.styles.keys():
             self.styles[element] = []
         self.styles[element].append(style)
 
-    def createPage(self):
-        page = ""
+    def changeFilename(self, filename):
+        self.filename = filename
 
-        page += ("<!doctype " + self.doc_type + ">")
-        page += ("<html lang=\"" + self.lang + "\">")
-        page += ("<head>")
-        page += ("<meta charset=\"" + self.encoding + "\">")
-        page += ("<title>" + self.title + "</title>")
+    # Removes all style attributes for a specific element,
+    # allowing a reset.
+    def removeStyle(self, element):
+        if element in self.styles.keys():
+            del self.styles[element]
+
+    # Pulls together all the components and creates the html page,
+    # storing the result in self.page. It overwrites any previously
+    # created pages.
+    def createPage(self):
+        self.page = ""
+
+        self.page += ("<!doctype " + self.doc_type + ">")
+        self.page += ("<html lang=\"" + self.lang + "\">")
+        self.page += ("<head>")
+        self.page += ("<meta charset=\"" + self.encoding + "\">")
+        self.page += ("<title>" + self.title + "</title>")
 
         if len(self.styles) > 0:
-            page += ("<style>")
+            self.page += ("<style>")
 
         for element, styles in self.styles.items():
-            page += (element + "{")
+            self.page += (element + "{")
             for style in styles:
-                page += (style + ";")
-            page += ("}")
+                self.page += (style + ";")
+            self.page += ("}")
         if len(self.styles) > 0:
-            page += ("</style>")
+            self.page += ("</style>")
 
 
-        page += ("</head>")
-        page += ("<body>")
-        page += self.body
-        page += ("</html>")
+        self.page += ("</head>")
+        self.page += ("<body>")
+        self.page += self.body
+        self.page += ("</html>")
 
+    # Saves self.page to a file using the filename stored in self.filename.
+    def savePage(self):
         with open(self.filename, 'w') as f:
-            f.write(page)
+            f.write(self.page)
+
+    def clearPage(self):
+        self.page = ""
 
     def openPage(self):
         webbrowser.open_new_tab(self.filename)
+
+    def clearBody(self):
+        self.body = ""
 
     def parseStyleTags(self, styles):
         color = None
